@@ -1,16 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cz.fi.muni.pa165.library.persistance.dao;
 
 import cz.fi.muni.pa165.library.persistance.entity.Loan;
 import cz.fi.muni.pa165.library.persistance.entity.LoanItem;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 import org.springframework.stereotype.Repository;
-
+/**
+ *
+ * @author xchomo
+ */
 @Repository
 public class LoanItemDaoImpl implements LoanItemDao {
 
@@ -24,9 +24,12 @@ public class LoanItemDaoImpl implements LoanItemDao {
 
     @Override
     public void delete(LoanItem loanItem) {
+        Objects.requireNonNull(loanItem, "null argument loanItem");
         em.remove(findById(loanItem.getId()));
     }
 
+    
+    
     @Override
     public void update(LoanItem loanItem) {
         em.merge(loanItem);

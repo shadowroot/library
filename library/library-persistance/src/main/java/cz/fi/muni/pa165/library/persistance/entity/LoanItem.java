@@ -1,4 +1,4 @@
-package cz.fi.muni.pa165.library.persistance.entity;
+    package cz.fi.muni.pa165.library.persistance.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -25,7 +25,7 @@ public class LoanItem{
     
 //    @Enumerated(EnumType.STRING)
 //    private String condition;
-
+    
     public Long getId() {
         return id;
     }

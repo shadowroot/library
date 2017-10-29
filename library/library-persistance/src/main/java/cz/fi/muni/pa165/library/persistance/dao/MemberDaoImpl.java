@@ -26,7 +26,7 @@ public class MemberDaoImpl implements MemberDao {
     @Override
     public void delete(Member member) {
         Objects.requireNonNull(member, "null argument member");
-         em.remove(member);
+         em.remove(findById(member.getId()));
     }
 
     @Override

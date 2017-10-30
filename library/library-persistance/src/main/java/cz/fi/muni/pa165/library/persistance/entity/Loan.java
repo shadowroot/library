@@ -89,22 +89,17 @@ public class Loan{
 
     public void setLoanItems(Set<LoanItem> loanItems) {
         this.loanItems = loanItems;
-        for(LoanItem loan : this.loanItems){
-            persist(loan);
-        }
     }
     
     public void addLoanItem(LoanItem item){
         if(loanItems == null){
             loanItems = new HashSet<>();
         }
-        persist(item);
         loanItems.add(item);
     }
     
     public void removeLoanItem(LoanItem item){
         loanItems.remove(item);
-        
     }
 
     public void persist(Object object) {
@@ -128,6 +123,7 @@ public class Loan{
         em.getTransaction().begin();
         try {
             em.remove(object);
+            em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();

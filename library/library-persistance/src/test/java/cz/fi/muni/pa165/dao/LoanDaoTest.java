@@ -160,14 +160,22 @@ public class LoanDaoTest extends AbstractTestNGSpringContextTests{
         
         l1i2.setBook(b2);
         l1i2.setLoan(l1);
+        
+        Set<LoanItem> checkedLoanItems = new HashSet<>();
+        checkedLoanItems.add(l1i1);
+        checkedLoanItems.add(l1i2);
+        
         em.persist(l1i2);
         l1.addLoanItem(l1i1);
+        l1.addLoanItem(l1i2);
        
         loanDao.update(l1);
         
         loans = em.createQuery("select l from Loan l where l.id=:id", Loan.class).setParameter("id", l1.getId()).getResultList();
         Assert.assertEquals(loans.size(), 1);
         Assert.assertEquals(loans.get(0), l1);
+        Loan checkedLoan = loans.get(0);
+        Assert.assertEquals(checkedLoan.getLoanItems(), checkedLoanItems);
     }
 
     @Test

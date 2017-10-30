@@ -2,8 +2,9 @@ package cz.fi.muni.pa165.library.persistance.dao;
 import  cz.fi.muni.pa165.library.persistance.entity.Member;
 import java.util.List;
 /**
- *
- * @author xchomo
+ *  Data access object (DAO) Interface for Member class
+ * 
+ * @author Tomas Chomo (xchomo)
  */
 public interface MemberDao {
  

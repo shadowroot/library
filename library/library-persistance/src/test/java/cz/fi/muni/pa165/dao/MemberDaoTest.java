@@ -27,8 +27,9 @@ import org.testng.annotations.Test;
 
 
 /**
- *
- * @author xchomo
+ * Unit testsing for MemberDao implementation of basic CRUD operations
+ * 
+ * @author Tomas Chomo (xchomo)
  */
 @ContextConfiguration(classes=PersistenceApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
@@ -52,7 +53,7 @@ public class MemberDaoTest extends AbstractTestNGSpringContextTests{
     public void setUp() {
         m1 = new Member();
         m1.setAddress("address");
-        m1.setEmail("daas@gmail.com");
+        m1.setEmail("daas@gmail.com");//email has to be unique
         m1.setFirstName("firstname");
         m1.setSurname("surname");
         m1.setPhone("+420700000000");

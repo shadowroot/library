@@ -5,8 +5,8 @@ import cz.fi.muni.pa165.library.persistance.entity.Member;
 import java.util.List;
 
 /**
- *
- * @author xchomo
+ * Database access object (DAO) for entity class Loan.
+ * @author Jan Tlamicha (xtlamich)
  */
 public interface LoanDao {
     
@@ -33,7 +33,7 @@ public interface LoanDao {
     public Loan findById(Long id);
 
     /**
-     * Returns all loans for the member 
+     * Returns all loans for the specific member 
      *
      * @param member for witch loans should be returned
      * @return all loans for specified member 

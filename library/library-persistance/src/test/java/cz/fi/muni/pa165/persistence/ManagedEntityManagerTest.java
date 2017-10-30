@@ -19,8 +19,8 @@ import org.springframework.test.context.testng.AbstractTransactionalTestNGSpring
 import org.testng.annotations.Test;
 
 /**
- *
- * @author shado
+ * Entity manager test persistence
+ * @author Jan Tlamicha (xtlamich)
  */
 @ContextConfiguration(classes=PersistenceApplicationContext.class)
 @DirtiesContext(classMode=DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)

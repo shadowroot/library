@@ -31,7 +31,9 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author shado
+ *  Unit tests for LoanDao for implementation of basic CRUD operations.
+ * 
+ * @author Jan Tlamicha(xtlamich)
  */
 @ContextConfiguration(classes=PersistenceApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
@@ -103,28 +105,10 @@ public class LoanDaoTest extends AbstractTestNGSpringContextTests{
         
         loanDao.create(l1);
         
-        //em = emf.createEntityManager();
         List<Loan> loans = em.createQuery("select b from Loan b where b.id=:id", Loan.class).setParameter("id", l1.getId()).getResultList();
         Assert.assertEquals(l1, loans.get(0));
-        /*
-        em.remove(b1);
-        books = em.createQuery("select b from Book b where b.id=:id", Book.class).setParameter("id", b1.getId()).getResultList();
-        Assert.assertEquals(books.size(), 0);
-        */
     }
     
-    /*
-    @Test(expectedExceptions = {org.springframework.dao.InvalidDataAccessApiUsageException.class})
-    public void createSameLoan(){
-        Loan loanCopy = new Loan();
-        loanCopy.setLoanCreated(l1.getLoanCreated());
-        loanCopy.setLoanItems(l1.getLoanItems());
-        loanCopy.setLoanReturned(l1.getLoanReturned());
-        loanCopy.setMember(l1.getMember());
-        loanDao.create(l1);
-        loanDao.create(loanCopy);
-    }
-    */
     
     @Test
     public void delete(){
@@ -184,7 +168,6 @@ public class LoanDaoTest extends AbstractTestNGSpringContextTests{
         loans = em.createQuery("select l from Loan l where l.id=:id", Loan.class).setParameter("id", l1.getId()).getResultList();
         Assert.assertEquals(loans.size(), 1);
         Assert.assertEquals(loans.get(0), l1);
-        
     }
 
     @Test
@@ -196,6 +179,21 @@ public class LoanDaoTest extends AbstractTestNGSpringContextTests{
         loansMock.add(l1);
         
         Assert.assertEquals(loanDao.findAll(), loansMock);
+    }
+    
+    @Test
+    public void allLoansOfMember(){
+        em.persist(l1);
+        
+        List<Loan> loansMember = loanDao.allLoansOfMember(member);
+        List<Loan> loans = em.createQuery("select l from Loan l where l.member = :member", Loan.class).setParameter("member", l1.getMember()).getResultList();
+      
+        Assert.assertEquals(loansMember, loans);
+    }
+    
+    @Test(expectedExceptions = {org.springframework.dao.InvalidDataAccessApiUsageException.class})
+    public void allLoansOfMemberNoneExisting(){
+        loanDao.allLoansOfMember(null);
     }
     
     

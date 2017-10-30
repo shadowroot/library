@@ -135,30 +135,46 @@ public class LoanItemDaoTest extends AbstractTestNGSpringContextTests{
         loanItemDao.delete(null);
     }
     
-    //TODO: update
-    
-//    @Test
-//    public void update(){
-//
-//        em.persist(l1);
-//        
-//        List<Loan> loans = em.createQuery("select l from Loan l where l.id=:id", Loan.class).setParameter("id", l1.getId()).getResultList();
-//        Assert.assertEquals(loans.size(), 1);
-//        
-//        LoanItem l1i2 = new LoanItem();
-//        
-//        l1i2.setBook(b2);
-//        l1i2.setLoan(l1);
-//        em.persist(l1i2);
-//        l1.addLoanItem(l1i1);
-//       
-//        loanDao.update(l1);
-//        
-//        loans = em.createQuery("select l from Loan l where l.id=:id", Loan.class).setParameter("id", l1.getId()).getResultList();
-//        Assert.assertEquals(loans.size(), 1);
-//        Assert.assertEquals(loans.get(0), l1);
-//        
-//    }
+    @Test
+    public void update(){
+
+        em.persist(l1);
+        
+        List<Loan> loans = em.createQuery("select l from Loan l where l.id=:id", Loan.class).setParameter("id", l1.getId()).getResultList();
+        Assert.assertEquals(loans.size(), 1);
+        
+        LoanItem l1i2 = new LoanItem();
+        
+        l1i2.setBook(b2);
+        l1i2.setLoan(l1);
+        em.persist(l1i2);
+        l1.addLoanItem(l1i2);
+        em.merge(l1);
+        
+        loans = em.createQuery("select l from Loan l where l.id=:id", Loan.class).setParameter("id", l1.getId()).getResultList();
+        Assert.assertEquals(loans.size(), 1);
+        Assert.assertEquals(loans.get(0), l1);
+        
+        l1i2.setBook(b1);
+        l1i2.setLoan(l1);
+        
+        loanItemDao.update(l1i2);
+        
+        loans = em.createQuery("select l from Loan l where l.id=:id", Loan.class).setParameter("id", l1.getId()).getResultList();
+        
+        Assert.assertEquals(loans.size(), 1);
+        Assert.assertEquals(loans.get(0), l1);
+        
+        Loan checked = loans.get(0);
+        Set<LoanItem> loanIt = checked.getLoanItems();
+        Assert.assertTrue(loanIt.contains(l1i2));
+        
+        List<LoanItem> loanItems = em.createQuery("select l from LoanItem l where l.id=:id").setParameter("id", l1i2.getId()).getResultList();
+        
+        Assert.assertEquals(loanItems.size(), 1);
+        Assert.assertEquals(loanItems.get(0), l1i2);
+        Assert.assertEquals(loanItems.get(0).getLoan(), l1);
+    }
     
     @Test
     public void findAll(){

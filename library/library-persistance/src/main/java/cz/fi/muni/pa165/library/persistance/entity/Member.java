@@ -11,7 +11,7 @@ import javax.validation.constraints.Pattern;
 /**
  * Entity representing member of library
  * 
- * @author xchomo
+ * @author Tomas Chomo (xchomo)
  */
 @Entity
 public class Member{
@@ -114,13 +114,14 @@ public class Member{
         this.joinedDate = joinedDate;
     }
     
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.firstName);
-        hash = 59 * hash + Objects.hashCode(this.surname);
-        hash = 59 * hash + Objects.hashCode(this.address);
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.firstName);
+        hash = 79 * hash + Objects.hashCode(this.surname);
+        hash = 79 * hash + Objects.hashCode(this.email);
         return hash;
     }
 
@@ -142,7 +143,7 @@ public class Member{
         if (!Objects.equals(this.surname, other.surname)) {
             return false;
         }
-        if (!Objects.equals(this.address, other.address)) {
+        if (!Objects.equals(this.email, other.email)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {

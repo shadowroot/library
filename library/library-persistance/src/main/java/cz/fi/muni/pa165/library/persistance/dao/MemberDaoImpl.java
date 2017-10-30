@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.library.persistance.dao;
 
 import cz.fi.muni.pa165.library.persistance.entity.Member;
@@ -11,6 +6,11 @@ import java.util.Objects;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
+/**
+ * Implementation of Member DAO interface with basic CRUD operations
+ * 
+ * @author Tomas Chomo (xchomo)
+ */
 
 @Repository
 public class MemberDaoImpl implements MemberDao {

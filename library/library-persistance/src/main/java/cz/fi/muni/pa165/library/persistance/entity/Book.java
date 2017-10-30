@@ -5,9 +5,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- *Entity representing book stored in library
+ * Entity representing book stored in library
  * 
- * @author xchomo
+ * @author Tomas Chomo (xchomo)
  */
 
 @Entity

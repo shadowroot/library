@@ -8,8 +8,8 @@ import java.util.Objects;
 import javax.persistence.*;
 import org.springframework.stereotype.Repository;
 /**
- *
- * @author xchomo
+ *  Implementation of DAO (data access object) for entity class Loan.
+ * @author Jan Tlamicha (xtlamich)
  */
 @Repository
 public class LoanDaoImpl implements LoanDao {

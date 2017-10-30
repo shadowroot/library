@@ -3,6 +3,7 @@ package cz.fi.muni.pa165.library.persistance.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -148,7 +149,20 @@ public class Loan{
         }
         return false;
     }
-    
-    
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.id);
+        if(loanCreated != null){
+            hash = 67 * hash + Objects.hashCode(this.loanCreated);
+        }
+        if(loanItems != null){
+            hash = 67 * hash + Objects.hashCode(this.loanItems);
+        }
+        if(loanReturned != null){
+            hash = 67 * hash + Objects.hashCode(this.loanReturned);
+        }
+        return hash;
+    }
 }

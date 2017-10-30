@@ -103,36 +103,6 @@ public class Loan{
         loanItems.remove(item);
     }
 
-    public void persist(Object object) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        try {
-            em.persist(object);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-    }
-    
-    public void removePersist(Object object){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        try {
-            em.remove(object);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-    }
-
     @Override
     public boolean equals(Object obj) {
         if(obj == this){
